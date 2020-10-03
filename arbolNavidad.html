@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!------------------------------IMPORTACIÓN DE HOJA DE ESTILOS--------------------------------------------------->
+<link rel="stylesheet" type="text/css" href="arbol.css">
+
+<!------------------------------IMPORTACIÓN DE LIBRERÍA JQUERY--------------------------------------------------->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+
+<script>
+
+  //Preparación del documento para que ejecute todo el contenido al abrirse.
+  $(document).ready(function(){
+    $(".bola").hide();
+
+    
+  //Variable para establecer el ancho del contenedor y poder usarlo como límite de la animación.
+    var $contentwidth = jQuery("#container").width();
+
+  //Función que hará caer las bolas del árbol tras pulsar el botón de mover el árbol.
+    $("#eliminar").click(function(){
+      $(".bola").animate({top: +$contentwidth});
+    }); 
+  
+  //Función que sacudirá el árbol al pulsar el botón de mover el árbol y dejará el contador de bolas colocadas a 0.
+    $("#eliminar").click(function(){
+      $("#container").effect("shake",{ direction: "left", times: 4}, 500);
+      $("#eliminadas").text(conteo);
+      conteo=0;
+      $("#creadas").text(conteo);
+    }); 
+
+  //Creación de un array de colores para poder cambiar las bolas de color aleatoriamente entre los establecidos.
+      var colores = ["red", "blue", "purple", "yellowgreen"];
+
+  //Creación de la variable con la que se contarán las bolas colocadas.
+      var conteo=0;
+
+  //Función para colocar las bolas en el árbol de manera aleatoria y contarlas.
+      $('#colocar').click(function(){
+          $('.bola').eq(conteo).show();
+    
+          $(document.createElement('div')).attr('class', 'bola', 'id', 'bola'+(conteo+1)).appendTo('.adornos').animate({
+            left: Math.floor(Math.random() * (265-100)+100),
+            top: Math.floor(Math.random() * (320-100)+100)},400).css("background-color", colores[Math.floor(Math.random() * colores.length)]);
+
+            conteo++;
+
+          $('#creadas').text(conteo);
+      });
+
+
+  });   
+ 
+  </script>
+</head>
+
+
+<body>
+
+<!-----------CREACIÓN DE CLASE QUE CONTIENE TODA LA ANIMACIÓN----------->
+<div class="animacion">
+
+<!-----------CREACIÓN DE CLASE INTERNA PARA DAR ESTILO EN CSS----------->
+<div class="botones">
+  <input type="button" id="colocar" value="Colocar adorno"/>
+  <input type="reset" id="eliminar" value="Mover árbol"/>
+</div>
+
+<!-----------CREACIÓN DE CLASE INTERNA PARA DAR ESTILO EN CSS----------->
+<div class="conteo">
+  <label for="creadas">Bolas creadas:</label>
+  <span id="creadas"></span>
+  <label for="eliminadas">Bolas eliminadas:</label>
+  <span id="eliminadas"></span>
+</div>
+
+<!-----------CREACIÓN DE CLASE INTERNA PARA DAR ESTILO EN CSS----------->
+<div id ="container">
+  <img src="tree.png" id="imagen-arbol">
+  <div class ="adornos"></div>
+</div>
+
+</div>
+
+</body>
+</html>

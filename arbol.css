@@ -1,0 +1,42 @@
+
+#imagen-arbol{
+    width: 400px;
+    height: 400px;
+    position:absolute;
+}
+#container{
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+.bola{
+position: absolute;
+height:30px;
+width: 30px;
+border-radius:40px;
+border-color: black;
+border-width: 2px;
+border-style: solid;
+box-shadow: inset 0.5px 0.2px 12px 3px;
+}
+.animacion{
+border-width:10px;
+border-color: black;
+border-style:solid;
+width: 400px;
+height: 480px;
+}
+
+.botones{
+    height: 25px;
+    background-color:black;
+}
+    
+.conteo{
+    background-color:black;
+    color:white;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 30px;
+}
+
